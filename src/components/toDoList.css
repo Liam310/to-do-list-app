@@ -1,0 +1,17 @@
+ul {
+    list-style-image: url("https://cultofthepartyparrot.com/parrots/fixparrot.gif");
+  }
+
+.no-strike{
+    cursor: "pointer";
+    color: #034f84;
+    user-select: none;
+}
+
+.strike {
+  text-decoration: line-through;
+  cursor: "pointer";
+  color: #b2b2b2;
+  user-select: none;
+}
+

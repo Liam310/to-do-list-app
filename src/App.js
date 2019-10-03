@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import ToDoList from './components/ToDoList';
-import StrikeHandler from './components/StrikeHandler';
+import React, { Component } from "react";
+import ToDoList from "./components/ToDoList";
+import SubmitHandler from "./components/SubmitHandler";
 
 class App extends Component {
   state = {
     toDoList: [
-      { taskId: 1, task: 'Water flowers', strikeThrough: true },
-      { taskId: 2, task: 'cancel Brexit', strikeThrough: false }
+      { taskId: 0, task: "Water flowers", strikeThrough: false },
+      { taskId: 1, task: "cancel Brexit", strikeThrough: false }
     ]
   };
   render() {
@@ -14,14 +14,34 @@ class App extends Component {
     return (
       <div className="App">
         <h1>To-do list:</h1>
-        {/* <StrikeHandler toDoList={toDoList} /> */}
+        <SubmitHandler addListItem={this.addListItem} />
         <ToDoList toDoList={toDoList} strikeHandler={this.strikeHandler} />
       </div>
     );
   }
 
   strikeHandler = event => {
-    console.dir(event.target);
+    const index = event.target.id;
+    this.setState(currentState => {
+      const toDoCopy = [...currentState.toDoList];
+      toDoCopy[index].strikeThrough = !toDoCopy[index].strikeThrough;
+      return { toDoList: toDoCopy };
+    });
+  };
+
+  addListItem = newTask => {
+    this.setState(currentState => {
+      return {
+        toDoList: [
+          ...currentState.toDoList,
+          {
+            taskId: currentState.toDoList.length,
+            task: newTask,
+            strikeThrough: false
+          }
+        ]
+      };
+    });
   };
 }
 

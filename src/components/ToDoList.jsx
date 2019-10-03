@@ -1,14 +1,14 @@
 import React from 'react';
-// import StrikeHandler from './StrikeHandler';
+import './toDoList.css';
 
 const ToDoList = ({ toDoList, strikeHandler }) => {
-  return toDoList.map(({ taskId, task, strikeThrough }) => {
+  return <ul> { toDoList.map(({ taskId, task, strikeThrough }) => {
     return (
-      <li onClick={strikeHandler} key={taskId}>
-        {strikeThrough ? <strike>{task}</strike> : task}
+      <li onClick={strikeHandler} style={{cursor:'pointer'}} className={strikeThrough?'strike':'no-strike'} key={taskId} id={taskId}>
+       {task}
       </li>
     );
-  });
+  })} </ul>
 };
 
 export default ToDoList;
